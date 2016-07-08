@@ -30,7 +30,7 @@
 #' Laparra, V., Malo, J., Camps-Valls, G., 2015. Dimensionality
 #'     Reduction via Regression in Hyperspectral Imagery. IEEE Journal
 #'     of Selected Topics in Signal Processing 9,
-#'     1026–1036. doi:10.1109/JSTSP.2015.2417833
+#'     1026-1036. doi:10.1109/JSTSP.2015.2417833
 #'
 #' @param X input data, a matrix.
 #' @param ndim the number of output dimensions and regression
