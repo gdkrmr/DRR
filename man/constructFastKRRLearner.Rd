@@ -7,7 +7,7 @@
 constructFastKRRLearner()
 }
 \value{
-Returns a learner of type \code{\link[CVST]{CVST.learner}}
+Returns a learner similar to \code{\link[CVST]{constructKRRLearner}}
     suitable for \code{\link[CVST]{CV}} and
     \code{\link[CVST]{fastCV}}.
 }

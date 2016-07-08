@@ -14,7 +14,7 @@
 #'
 #' 
 #'
-#' @return Returns a learner of type \code{\link[CVST]{CVST.learner}}
+#' @return Returns a learner similar to \code{\link[CVST]{constructKRRLearner}}
 #'     suitable for \code{\link[CVST]{CV}} and
 #'     \code{\link[CVST]{fastCV}}.
 #'
@@ -48,7 +48,10 @@
 #' legend('topleft', legend = c('fast KRR', 'KRR'),
 #'        col = c('#00C000', '#0000C0'), lty = 2)
 #' }
-#' 
+#'
+#' @import Matrix
+#' @import CVST
+#' @import kernlab
 #' @export
 constructFastKRRLearner <- function () {
     if(!requireNamespace("CVST")) stop("require the 'CVST' package")
@@ -105,49 +108,14 @@ constructFastKRRLearner <- function () {
   return(CVST::constructLearner(learn.krr, predict.krr))
 }
 
-#' Fast implementation of Kernel Ridge Regression
-#'
-#' To be used as a dropin replacement of .krr to be used with constructFastKRRLearner
-#'
-#' implements a divide and conquer scheme that is easier on large datasets
-#'  
-#' @param data output of CVST::constructData
-#' @param kernel kernel function or string, see
-#'   \code{\link[kernlab]{kernel-klass}}
-## .fastkrr <- function (data, kernel, y, lambda, nblocks) {
-##     nobs <- nrow(data)
-
-##     if(!requireNamespace("kernlab"))
-##         stop("require package 'kernlab'")
-
-    
-##     shuff <- sample(1:nobs)
-
-##     blocksizes <- makeBlocks(nobs, nblocks)
-##     bends <- cumsum(blocksizes)
-##     bstarts <- c(1, bends[-nblocks] + 1)
-
-##     ## this can be parallelized:
-##     alpha <- numeric(nobs)
-##     for(i in 1:nblocks) {
-##         iIndices <- shuff[ bstarts[i]:bends[i] ]
-##         iK <- kernlab::kernelMatrix(kernel, data[iIndices,])
-##         iN <- length(iIndices)
-
-##         alpha[iIndices] <- solve(iK + diag(lambda, iN), y[iIndices])
-##     }
-
-##     return(list(data = data, kernel = kernel, alpha = alpha))
-## }
-
-#' dividing nobs into nblocks parts that have approximately the same size
-#'
-#' @param nobs total number of observations
-#' @param nblocks number of blocks
-#'
-#' @return vector of integers of length \code{nblocks} that sums up to
-#'   \code{nobs}
-#' 
+# dividing nobs into nblocks parts that have approximately the same size
+#
+# @param nobs total number of observations
+# @param nblocks number of blocks
+#
+# @return vector of integers of length \code{nblocks} that sums up to
+#   \code{nobs}
+# 
 makeBlocks <- function (nobs, nblocks) {
  
   maxbs <- nobs %/% nblocks
@@ -161,8 +129,8 @@ makeBlocks <- function (nobs, nblocks) {
 
 ## get the kernel function out of the kernlab namespace:
 get_kernel_fun <- function (kernel, pars) {
-    if (!is(kernel,"kernel")) {
-        if (is(kernel,"function")) {
+    if (!methods::is(kernel,"kernel")) {
+        if (methods::is(kernel,"function")) {
             kernel <- deparse(substitute(kernel))
         } else {
             kernel <- get(kernel, asNamespace('kernlab'))

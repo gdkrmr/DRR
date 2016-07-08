@@ -13,8 +13,6 @@
 #'     Kernel Ridge Regression: A Distributed Algorithm with Minimax
 #'     Optimal Rates. arXiv:1305.5029 [cs, math, stat].
 #'
-#' 
-#' @name DRR
 #' @docType package
-NULL
+"_PACKAGE"
 
