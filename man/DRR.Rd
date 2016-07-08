@@ -9,7 +9,7 @@
 DRR(X, ndim = ncol(X), lambda = c(0, 10^(-2:1)), kernel = "rbfdot",
   kernel.pars = list(sigma = 10^(-2:3)), pca = TRUE, pca.center = TRUE,
   pca.scale = TRUE, fastcv = FALSE, cv.folds = 5, fastcv.test = NULL,
-  fastkrr.nblocks = 2, verbose = TRUE)
+  fastkrr.nblocks = 4, verbose = TRUE)
 }
 \arguments{
 \item{X}{input data, a matrix.}
@@ -64,16 +64,16 @@ A list with the following elements:
 
 tt <- seq(0,4*pi, length.out = 2000)
 helix <- cbind(
-  z = 2 * tt      + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt))),
   x = 3 * cos(tt) + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt))),
-  y = 3 * sin(tt) + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt)))
+  y = 3 * sin(tt) + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt))),
+  z = 2 * tt      + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt)))
 )
 
 library(profvis)
 p <- profvis({
-  drr <- DRR(helix, ndim = 1, pca = FALSE, cv.folds = 5,
+  drr <- DRR(helix, ndim = 3, cv.folds = 5,
              fastkrr.nblocks = 4, verbose = TRUE,
-             fastcv = TRUE)
+             fastcv = FALSE)
 })
 print(p)
 
@@ -83,6 +83,7 @@ library(rgl)
 plot3d()
 plot3d(helix)
 points3d(drr$inverse(drr$fitted.data[,1,drop = FALSE]), col = 'blue')
+
 
 plot3d(drr$fitted.data)
 xx <- seq(-0, 250, length.out = 25)

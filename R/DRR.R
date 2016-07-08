@@ -62,16 +62,16 @@
 #'
 #' tt <- seq(0,4*pi, length.out = 2000)
 #' helix <- cbind(
-#'   z = 2 * tt      + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt))),
 #'   x = 3 * cos(tt) + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt))),
-#'   y = 3 * sin(tt) + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt)))
+#'   y = 3 * sin(tt) + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt))),
+#'   z = 2 * tt      + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt)))
 #' )
 #'
 #' library(profvis)
 #' p <- profvis({
-#'   drr <- DRR(helix, ndim = 1, pca = FALSE, cv.folds = 5,
+#'   drr <- DRR(helix, ndim = 3, cv.folds = 5,
 #'              fastkrr.nblocks = 4, verbose = TRUE,
-#'              fastcv = TRUE)
+#'              fastcv = FALSE)
 #' })
 #' print(p)
 #'
@@ -81,6 +81,7 @@
 #' plot3d()
 #' plot3d(helix)
 #' points3d(drr$inverse(drr$fitted.data[,1,drop = FALSE]), col = 'blue')
+#'
 #' 
 #' plot3d(drr$fitted.data)
 #' xx <- seq(-0, 250, length.out = 25)
@@ -108,7 +109,7 @@ DRR <- function (X, ndim = ncol(X),
                  fastcv      = FALSE,
                  cv.folds    = 5,
                  fastcv.test = NULL,
-                 fastkrr.nblocks = 2,
+                 fastkrr.nblocks = 4,
                  verbose  = TRUE)  {
     if((!fastcv) && (cv.folds <= 1)) stop("need more than one fold for crossvalidation")
     if(cv.folds %% 1 != 0) stop("cv.folds must be a whole number")
