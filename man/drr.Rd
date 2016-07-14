@@ -4,9 +4,9 @@
 \alias{drr}
 \title{Dimensionality Reduction via Regression}
 \usage{
-drr(X, ndim = ncol(X), lambda = c(0, 10^(-2:1)), kernel = "rbfdot",
-  kernel.pars = list(sigma = 10^(-2:3)), pca = TRUE, pca.center = TRUE,
-  pca.scale = TRUE, fastcv = FALSE, cv.folds = 5, fastcv.test = NULL,
+drr(X, ndim = ncol(X), lambda = c(0, 10^(-3:2)), kernel = "rbfdot",
+  kernel.pars = list(sigma = 10^(-3:4)), pca = TRUE, pca.center = TRUE,
+  pca.scale = FALSE, fastcv = FALSE, cv.folds = 5, fastcv.test = NULL,
   fastkrr.nblocks = 4, verbose = TRUE)
 }
 \arguments{

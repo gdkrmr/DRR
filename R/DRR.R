@@ -106,12 +106,12 @@
 #' @import CVST
 #' @export
 drr <- function (X, ndim = ncol(X),
-                 lambda = c(0, 10^(-2:1)),
+                 lambda = c(0, 10^(-3:2)),
                  kernel      = 'rbfdot',
-                 kernel.pars = list(sigma = 10^(-2:3)),
+                 kernel.pars = list(sigma = 10^(-3:4)),
                  pca        = TRUE,
                  pca.center = TRUE,
-                 pca.scale  = TRUE,
+                 pca.scale  = FALSE,
                  fastcv      = FALSE,
                  cv.folds    = 5,
                  fastcv.test = NULL,
