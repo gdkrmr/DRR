@@ -105,18 +105,18 @@
 #' @import kernlab
 #' @import CVST
 #' @export
-drr <- function (X, ndim = ncol(X),
-                 lambda = c(0, 10^(-3:2)),
-                 kernel      = 'rbfdot',
-                 kernel.pars = list(sigma = 10^(-3:4)),
-                 pca        = TRUE,
-                 pca.center = TRUE,
-                 pca.scale  = FALSE,
-                 fastcv      = FALSE,
-                 cv.folds    = 5,
-                 fastcv.test = NULL,
+drr <- function (X, ndim         = ncol(X),
+                 lambda          = c(0, 10^(-3:2)),
+                 kernel          = 'rbfdot',
+                 kernel.pars     = list(sigma = 10^(-3:4)),
+                 pca             = TRUE,
+                 pca.center      = TRUE,
+                 pca.scale       = FALSE,
+                 fastcv          = FALSE,
+                 cv.folds        = 5,
+                 fastcv.test     = NULL,
                  fastkrr.nblocks = 4,
-                 verbose  = TRUE)  {
+                 verbose         = TRUE)  {
     if((!fastcv) && (cv.folds <= 1)) stop("need more than one fold for crossvalidation")
     if(cv.folds %% 1 != 0) stop("cv.folds must be a whole number")
     if(fastkrr.nblocks < 1) stop("fastkrr.nblocks must be at least 1")
