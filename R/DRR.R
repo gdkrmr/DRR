@@ -61,7 +61,7 @@
 #' \itemize{
 #'  \item {"fitted.data:"} {The data in reduced dimensions.}
 #'  \item {"pca.means"} The means used to center the original data.
-#'  \item {pca.scale""} The standard deviations used to scale the original data.
+#'  \item {"pca.scale"} The standard deviations used to scale the original data.
 #'  \item {"pca.rotation"} The rotation matrix of the PCA.
 #'  \item {"models"} A list of models used to estimate each dimension.
 #'  \item {"apply"} A function to fit new data to the estimated model.
@@ -199,8 +199,8 @@ drr <- function (X, ndim         = ncol(X),
             outdat[,i] <-
                 dat[,i] - krrl$predict(
                               models[[i]],
-                              CVST:::constructData(x = dat[,1:(i-1), drop = FALSE],
-                                                   y = NA)
+                              CVST::constructData(x = dat[,1:(i-1), drop = FALSE],
+                                                  y = NA)
                           )
         
         outdat[,1] <- dat[,1]
@@ -219,8 +219,8 @@ drr <- function (X, ndim         = ncol(X),
         if(d > 1) for (i in 2:d)
             outdat[,i] <- dat[,i] + krrl$predict(
                               models[[i]],
-                              CVST:::constructData(x = outdat[,1:(i-1), drop = FALSE],
-                                                   y = NA)
+                              CVST::constructData(x = outdat[,1:(i-1), drop = FALSE],
+                                                  y = NA)
                           )
         
         ## inverse pca

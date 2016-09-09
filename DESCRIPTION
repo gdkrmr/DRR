@@ -7,6 +7,7 @@ Authors@R: person("Guido", "Kraemer",
 Description: An implementation of Dimensionality Reduction
     via Regression using Kernel Ridge Regression.
 License: All rights reserved.
+Imports: stats
 LazyData: true
 Depends: kernlab, CVST, Matrix
 RoxygenNote: 5.0.1

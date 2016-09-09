@@ -52,7 +52,7 @@ A list the following items:
 \itemize{
  \item {"fitted.data:"} {The data in reduced dimensions.}
  \item {"pca.means"} The means used to center the original data.
- \item {pca.scale""} The standard deviations used to scale the original data.
+ \item {"pca.scale"} The standard deviations used to scale the original data.
  \item {"pca.rotation"} The rotation matrix of the PCA.
  \item {"models"} A list of models used to estimate each dimension.
  \item {"apply"} A function to fit new data to the estimated model.
