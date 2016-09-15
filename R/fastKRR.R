@@ -2,20 +2,21 @@
 #' 
 #' Constructs a learner for the divide and conquer version of KRR.
 #'
-#' This function is to be used with the CVST package as a dropin
+#' This function is to be used with the CVST package as a drop in
 #' replacement for \code{\link[CVST]{constructKRRLearner}}. The
 #' implementation approximates the inversion of the kernel Matrix
 #' using the divide an conquer scheme, lowering computational and
-#' memory complexity from O(n^3) and O(n^2) to O(n^3/m^2) and
-#' O(n^2/m^2) respectively, where m are the number of blocks to be
-#' used (parameter nblocks). In theory safe values for m are <
-#' n^(1/3), the function will issue a warning, if the value for m is
-#' too large.
+#' memory complexity from \eqn{O(n^3)} and \eqn{O(n^2)} to
+#' \eqn{O(n^3/m^2)} and \eqn{O(n^2/m^2)} respectively, where m are the
+#' number of blocks to be used (parameter nblocks). Theoretically safe
+#' values for \eqn{m} are \eqn{< n^{1/3}}, but practically \eqn{m} may
+#' be a little bit larger. The function will issue a warning, if the
+#' value for \eqn{m} is too large.
 #'
 #' 
 #'
 #' @return Returns a learner similar to \code{\link[CVST]{constructKRRLearner}}
-#'     suitable for \code{\link[CVST]{CV}} and
+#'     suitable for the use with \code{\link[CVST]{CV}} and
 #'     \code{\link[CVST]{fastCV}}.
 #'
 #' @seealso \code{\link[CVST]{constructLearner}}
@@ -63,7 +64,7 @@ constructFastKRRLearner <- function () {
         nobs <- nrow(data$x)
         if (log(nblocks) / log(nobs) > 1/3) {
             warning(
-                "Number of blocks too large wrt. number of observations, log(m)/log(N) ",
+                "Number of blocks too large wrt. number of observations, log(m)/log(N) = ",
                 sprintf("%.2f", log(nblocks)), "/", sprintf("%.2f", log(nobs)),
                 " = ", sprintf("%.2f", log(nblocks)/log(nobs)),
                 ", should be < 1/3, you results may suffer numerical inaccurracy. ",
@@ -81,14 +82,13 @@ constructFastKRRLearner <- function () {
         bends <- cumsum(blocksizes)
         bstarts <- c(1, bends[-nblocks] + 1)
 
-        ## we make nblock models for ththe subsamples
+        ## we make nblock models for the subsamples
         ## this can be parallelized:
         models <- list()
         for(i in 1:nblocks) {
             iIndices <- shuff[ bstarts[i]:bends[i] ]
-            models[[i]] <- CVST:::.krr(data$x[iIndices,], kernel, data$y[iIndices], params$lambda)
+            models[[i]] <- krr(data$x[iIndices,], kernel, data$y[iIndices], params$lambda)
         }
-
         return(models)
     } # end learn.krr
     
@@ -98,10 +98,10 @@ constructFastKRRLearner <- function () {
         nModels <- length(models)
         pred <- rep(0, nrow(newData$x))
         for(i in 1:nModels) {
-            pred <- pred + CVST:::.krr.predict(newData$x, models[[i]])
+            pred <- pred + krr.predict(newData$x, models[[i]])
         }
         pred <- pred / nModels
-        return(pred)
+        return(as.matrix(pred))
     }
         
                
@@ -141,4 +141,21 @@ get_kernel_fun <- function (kernel, pars) {
 }
 
 
+## internal functions from cvst package, have to be here, because CVST
+## does not export them and CRAN does not allow the use of unexported
+## functions.
+
+## CVST:::.krr
+krr <- function (data, kernel, y, lambda) {
+    K <- kernlab::kernelMatrix(kernel, data)
+    N <- nrow(K)
+    alpha <- solve(Matrix(K + diag(lambda, N))) %*% y
+    return(list(data = data, kernel = kernel, alpha = alpha))
+}
+
+## CVST:::.krr.predict
+krr.predict <- function (newData, krr) {
+    k <- kernlab::kernelMatrix(krr$kernel, newData, krr$data)
+    return(k %*% krr$alpha)
+}
 

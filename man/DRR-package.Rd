@@ -10,6 +10,10 @@ DRR implements the Dimensionality Reduction via Regression using
 Kernel Ridge Regression. It also adds a faster implementation of
 Kernel Ridge regression that can be used with the CVST package.
 }
+\details{
+Thanks to the Max Planck Institute for Biogeochemistry in Jena for
+the funding.
+}
 \references{
 Laparra, V., Malo, J., Camps-Valls, G., 2015. Dimensionality
     Reduction via Regression in Hyperspectral Imagery. IEEE Journal

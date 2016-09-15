@@ -1,12 +1,12 @@
 #' Dimensionality Reduction via Regression
 #'
 #' 
-#' \code{drr} implements the Dimensionality Reduction via Regression using
+#' \code{drr} Implements Dimensionality Reduction via Regression using
 #' Kernel Ridge Regression.
 #'
 #' 
-#' Parameter combination will be formed and crossvalidation used to
-#' select the best combination. Crossvalidation uses
+#' Parameter combination will be formed and cross-validation used to
+#' select the best combination. Cross-validation uses
 #' \code{\link[CVST]{CV}} or \code{\link[CVST]{fastCV}}.
 #'
 #' Pre-treatment of the data using a PCA and scaling is made
@@ -59,7 +59,7 @@
 #'
 #' @return A list the following items:
 #' \itemize{
-#'  \item {"fitted.data:"} {The data in reduced dimensions.}
+#'  \item {"fitted.data"} The data in reduced dimensions.
 #'  \item {"pca.means"} The means used to center the original data.
 #'  \item {"pca.scale"} The standard deviations used to scale the original data.
 #'  \item {"pca.rotation"} The rotation matrix of the PCA.
@@ -75,21 +75,26 @@
 #'   y = 3 * sin(tt) + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt))),
 #'   z = 2 * tt      + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt)))
 #' )
-#'
-#' drr.fit  <- drr(helix, ndim = 3, cv.folds = 5,
-#'                 fastkrr.nblocks = 4, verbose = TRUE,
+#' system.time(
+#' drr.fit  <- drr(helix, ndim = 3, cv.folds = 4,
+#'                 lambda = 10^(-2:1),
+#'                 kernel.pars = list(sigma = 10^(0:3)),
+#'                 fastkrr.nblocks = 2, verbose = TRUE,
 #'                 fastcv = FALSE)
-#' 
+#' )
+#'
 #' \dontrun{
 #' library(rgl)
 #' plot3d(helix)
 #' points3d(drr.fit$inverse(drr.fit$fitted.data[,1,drop = FALSE]), col = 'blue')
-#'
+#' points3d(drr.fit$inverse(drr.fit$fitted.data[,1:2]),             col = 'red')
 #' 
 #' plot3d(drr.fit$fitted.data)
-#' xx <- seq(-0, 250, length.out = 25)
-#' yy <- seq(-40, 40, length.out = 5)
-#' zz <- seq(-40, 40, length.out = 5)
+#' pad <- -3
+#' fd <- drr.fit$fitted.data
+#' xx <- seq(min(fd[,1])      , max(fd[,1])      , length.out = 25)
+#' yy <- seq(min(fd[,2]) - pad, max(fd[,2]) + pad, length.out = 5)
+#' zz <- seq(min(fd[,3]) - pad, max(fd[,3]) + pad, length.out = 5)
 #'
 #' dd <- as.matrix(expand.grid(xx, yy, zz))
 #' plot3d(helix)
@@ -118,15 +123,15 @@ drr <- function (X, ndim         = ncol(X),
                  fastkrr.nblocks = 4,
                  verbose         = TRUE)  {
     if((!fastcv) && (cv.folds <= 1)) stop("need more than one fold for crossvalidation")
-    if(cv.folds %% 1 != 0) stop("cv.folds must be a whole number")
-    if(fastkrr.nblocks < 1) stop("fastkrr.nblocks must be at least 1")
-    if(fastkrr.nblocks %% 1 != 0) stop('fastkrr.nblocks must be a whole number')
-    if(!requireNamespace("CVST")) stop("require the 'CVST' package")
+    if(cv.folds %% 1 != 0)           stop("cv.folds must be a whole number")
+    if(fastkrr.nblocks < 1)          stop("fastkrr.nblocks must be at least 1")
+    if(fastkrr.nblocks %% 1 != 0)    stop('fastkrr.nblocks must be a whole number')
+    if(!requireNamespace("CVST"))    stop("require the 'CVST' package")
     if(!requireNamespace("kernlab")) stop("require 'kernlab' package")
-    if(ndim < ncol(X)) warning('ndim < data dimensionality, the inverse functions will be incomplete!')
-    if(ndim > ncol(X)) ndim <- ncol(X)
+    if(ndim < ncol(X))               warning('ndim < data dimensionality, the inverse functions will be incomplete!')
+    if(ndim > ncol(X))               ndim <- ncol(X)
 
-    if(pca) {
+    if (pca) {
         pca <- stats::prcomp(X, center = pca.center, scale. = pca.scale)
         if (!pca.center) pca$center <- rep(0, ncol(X))
         if (!pca.scale) pca$scale   <- rep(1, ncol(X))
@@ -153,7 +158,7 @@ drr <- function (X, ndim         = ncol(X),
     
     Y <- matrix(NA_real_, nrow = nrow(X), ncol = d)
     models <- list()
-    if(d > 1) for (i in d:2) {
+    if (d > 1) for (i in d:2) {
         message(Sys.time(), ": Constructing Axis ", d-i+1, "/", d)
         data <- CVST::constructData(
             x = alpha[,1:(i-1), drop = FALSE],
@@ -180,7 +185,7 @@ drr <- function (X, ndim         = ncol(X),
         model <- krrl$learn(data, res[[1]])
 
         models[[i]] <- model
-        Y[,i] <- alpha[,i] - krrl$predict(model, data)
+        Y[,i] <- as.matrix(alpha[,i] - krrl$predict(model, data))
     }
     ## we don't need to construct the very last dimension
     message(Sys.time(), ": Constructing Axis ", d, "/", d)
@@ -209,7 +214,6 @@ drr <- function (X, ndim         = ncol(X),
     }
 
     inv <- function(x){
-        #browser()
         dat <- cbind(x, matrix(0, nrow(x), ncol(X)-ncol(x)))
 
         outdat <- dat #matrix(NA_real_, nrow(x), ncol(X))

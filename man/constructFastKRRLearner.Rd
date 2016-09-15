@@ -8,22 +8,23 @@ constructFastKRRLearner()
 }
 \value{
 Returns a learner similar to \code{\link[CVST]{constructKRRLearner}}
-    suitable for \code{\link[CVST]{CV}} and
+    suitable for the use with \code{\link[CVST]{CV}} and
     \code{\link[CVST]{fastCV}}.
 }
 \description{
 Constructs a learner for the divide and conquer version of KRR.
 }
 \details{
-This function is to be used with the CVST package as a dropin
+This function is to be used with the CVST package as a drop in
 replacement for \code{\link[CVST]{constructKRRLearner}}. The
 implementation approximates the inversion of the kernel Matrix
 using the divide an conquer scheme, lowering computational and
-memory complexity from O(n^3) and O(n^2) to O(n^3/m^2) and
-O(n^2/m^2) respectively, where m are the number of blocks to be
-used (parameter nblocks). In theory safe values for m are <
-n^(1/3), the function will issue a warning, if the value for m is
-too large.
+memory complexity from \eqn{O(n^3)} and \eqn{O(n^2)} to
+\eqn{O(n^3/m^2)} and \eqn{O(n^2/m^2)} respectively, where m are the
+number of blocks to be used (parameter nblocks). Theoretically safe
+values for \eqn{m} are \eqn{< n^{1/3}}, but practically \eqn{m} may
+be a little bit larger. The function will issue a warning, if the
+value for \eqn{m} is too large.
 }
 \examples{
 ns <- noisySinc(1000)

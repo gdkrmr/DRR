@@ -50,7 +50,7 @@ numerical inaccurracies, see
 \value{
 A list the following items:
 \itemize{
- \item {"fitted.data:"} {The data in reduced dimensions.}
+ \item {"fitted.data"} The data in reduced dimensions.
  \item {"pca.means"} The means used to center the original data.
  \item {"pca.scale"} The standard deviations used to scale the original data.
  \item {"pca.rotation"} The rotation matrix of the PCA.
@@ -60,12 +60,12 @@ A list the following items:
 }
 }
 \description{
-\code{drr} implements the Dimensionality Reduction via Regression using
+\code{drr} Implements Dimensionality Reduction via Regression using
 Kernel Ridge Regression.
 }
 \details{
-Parameter combination will be formed and crossvalidation used to
-select the best combination. Crossvalidation uses
+Parameter combination will be formed and cross-validation used to
+select the best combination. Cross-validation uses
 \code{\link[CVST]{CV}} or \code{\link[CVST]{fastCV}}.
 
 Pre-treatment of the data using a PCA and scaling is made
@@ -91,21 +91,26 @@ helix <- cbind(
   y = 3 * sin(tt) + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt))),
   z = 2 * tt      + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt)))
 )
-
-drr.fit  <- drr(helix, ndim = 3, cv.folds = 5,
-                fastkrr.nblocks = 4, verbose = TRUE,
+system.time(
+drr.fit  <- drr(helix, ndim = 3, cv.folds = 4,
+                lambda = 10^(-2:1),
+                kernel.pars = list(sigma = 10^(0:3)),
+                fastkrr.nblocks = 2, verbose = TRUE,
                 fastcv = FALSE)
+)
 
 \dontrun{
 library(rgl)
 plot3d(helix)
 points3d(drr.fit$inverse(drr.fit$fitted.data[,1,drop = FALSE]), col = 'blue')
-
+points3d(drr.fit$inverse(drr.fit$fitted.data[,1:2]),             col = 'red')
 
 plot3d(drr.fit$fitted.data)
-xx <- seq(-0, 250, length.out = 25)
-yy <- seq(-40, 40, length.out = 5)
-zz <- seq(-40, 40, length.out = 5)
+pad <- -3
+fd <- drr.fit$fitted.data
+xx <- seq(min(fd[,1])      , max(fd[,1])      , length.out = 25)
+yy <- seq(min(fd[,2]) - pad, max(fd[,2]) + pad, length.out = 5)
+zz <- seq(min(fd[,3]) - pad, max(fd[,3]) + pad, length.out = 5)
 
 dd <- as.matrix(expand.grid(xx, yy, zz))
 plot3d(helix)
