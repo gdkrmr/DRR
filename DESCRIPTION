@@ -1,6 +1,6 @@
 Package: DRR
 Title: Dimensionality Reduction via Regression
-Version: 0.0.2
+Version: 0.0.2.9000
 Authors@R: person("Guido", "Kraemer",
                   email = "gkraemer@bgc-jena.mpg.de",
 		  role = c("aut","cre"))
