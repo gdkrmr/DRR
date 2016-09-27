@@ -7,6 +7,8 @@ Authors@R: person("Guido", "Kraemer",
 Description: An Implementation of Dimensionality Reduction
     via Regression using Kernel Ridge Regression.
 License: GPL-3 | file LICENSE
+URL: https://github.com/gdkrmr/DRR
+BugReports: https://github.com/gdkrmr/DRR/issues
 Imports: stats, methods
 Suggests: knitr
 VignetteBuilder: knitr
