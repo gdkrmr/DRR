@@ -6,7 +6,7 @@ Authors@R: person("Guido", "Kraemer",
 		  role = c("aut","cre"))
 Description: An Implementation of Dimensionality Reduction
     via Regression using Kernel Ridge Regression.
-License: GPL-3
+License: GPL-3 | file LICENSE
 Imports: stats, methods
 Suggests: knitr
 VignetteBuilder: knitr
