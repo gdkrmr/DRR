@@ -1,0 +1,4 @@
+^DRR_.*\.tar\.gz$
+dir-locals\.el
+DRR.Rcheck
+checkpackage\.sh

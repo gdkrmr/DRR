@@ -3,8 +3,6 @@
 .#*
 *~
 
-.Rbuildignore
-
 DRR.Rcheck
 DRR_*.tar.gz
 dir-locals.el
