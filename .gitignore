@@ -8,5 +8,4 @@
 DRR.Rcheck
 DRR_*.tar.gz
 dir-locals.el
-doc
 /checkpackage.sh
