@@ -11,8 +11,8 @@ Kernel Ridge Regression. It also adds a faster implementation of
 Kernel Ridge regression that can be used with the CVST package.
 }
 \details{
-Thanks to the Max Planck Institute for Biogeochemistry in Jena for
-the funding.
+Funding provided by the Max Planck Institute for Biogeochemistry,
+Jena, Empirical Inference of the Earth System Group.
 }
 \references{
 Laparra, V., Malo, J., Camps-Valls, G., 2015. Dimensionality

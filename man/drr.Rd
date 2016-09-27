@@ -91,6 +91,7 @@ helix <- cbind(
   y = 3 * sin(tt) + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt))),
   z = 2 * tt      + rnorm(length(tt), sd = seq(0.1, 1.4, length.out = length(tt)))
 )
+helix <- helix[sample(nrow(helix)),] # shuffling data is important!!
 system.time(
 drr.fit  <- drr(helix, ndim = 3, cv.folds = 4,
                 lambda = 10^(-2:1),
