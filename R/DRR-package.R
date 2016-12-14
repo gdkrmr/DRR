@@ -19,4 +19,3 @@
 #'
 #' @docType package
 "_PACKAGE"
-

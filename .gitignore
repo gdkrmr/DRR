@@ -8,3 +8,4 @@ DRR_*.tar.gz
 dir-locals.el
 /checkpackage.sh
 inst/doc
+/R/#DRR.R#

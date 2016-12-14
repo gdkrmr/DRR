@@ -56,7 +56,7 @@ A list the following items:
  \item {"pca.rotation"} The rotation matrix of the PCA.
  \item {"models"} A list of models used to estimate each dimension.
  \item {"apply"} A function to fit new data to the estimated model.
- \item {"inverse"} A function to untransform data. 
+ \item {"inverse"} A function to untransform data.
 }
 }
 \description{
@@ -109,7 +109,7 @@ points3d(drr.fit$inverse(drr.fit$fitted.data[,1:2]),             col = 'red')
 plot3d(drr.fit$fitted.data)
 pad <- -3
 fd <- drr.fit$fitted.data
-xx <- seq(min(fd[,1])      , max(fd[,1])      , length.out = 25)
+xx <- seq(min(fd[,1]),       max(fd[,1]),       length.out = 25)
 yy <- seq(min(fd[,2]) - pad, max(fd[,2]) + pad, length.out = 5)
 zz <- seq(min(fd[,3]) - pad, max(fd[,3]) + pad, length.out = 5)
 
