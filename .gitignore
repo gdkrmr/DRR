@@ -9,3 +9,4 @@ dir-locals.el
 /checkpackage.sh
 inst/doc
 /R/#DRR.R#
+scratch
