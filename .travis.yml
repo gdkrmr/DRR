@@ -7,10 +7,12 @@ r:
   - release
   - devel
 
+r_packages:
+  - covr
+  - roxygen2
+
 before_install:
   - Rscript -e "update.packages(ask = FALSE)"
-  - Rscript -e "if (!'covr' %in% rownames(installed.packages())) install.packages('covr')"
-  - Rscript -e "if (!'roxygen2' %in% rownames(installed.packages())) install.packages('roxygen2')"
 
 before_script:
   - Rscript -e "devtools::document()"
