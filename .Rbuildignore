@@ -1,4 +1,5 @@
 ^DRR_.*\.tar\.gz$
-dir-locals\.el
-DRR.Rcheck
-checkpackage\.sh
+^dir-locals\.el$
+^DRR\.Rcheck$
+^checkpackage\.sh$
+^\.travis\.yml$
