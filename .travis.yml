@@ -11,6 +11,7 @@ before_install:
   - Rscript -e "update.packages(ask = FALSE)"
   - Rscript -e "if (!'covr' %in% rownames(installed.packages())) install.packages('covr')"
   - Rscript -e "if (!'roxygen2' %in% rownames(installed.packages())) install.packages('roxygen2')"
+  - Rscript -e "if (!'rmarkdown' %in% rownames(installed.packages())) install.packages('rmarkdown')"
 
 before_script:
   - Rscript -e "devtools::document()"
