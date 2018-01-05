@@ -8,7 +8,7 @@ License: GPL-3 | file LICENSE
 URL: https://github.com/gdkrmr/DRR
 BugReports: https://github.com/gdkrmr/DRR/issues
 Imports: stats, methods
-Suggests: knitr
+Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 LazyData: true
 Depends: kernlab, CVST, Matrix
