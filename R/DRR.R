@@ -126,11 +126,11 @@ drr <- function (X, ndim         = ncol(X),
     if ( (!fastcv) && (cv.folds <= 1))
         stop("need more than one fold for crossvalidation")
     if (cv.folds %% 1 != 0)
-        stop("cv.folds must be a whole number")
+        stop("cv.folds must be an integer")
     if (fastkrr.nblocks < 1)
-        stop("fastkrr.nblocks must be at least 1")
+        stop("fastkrr.nblocks must be > 1")
     if (fastkrr.nblocks %% 1 != 0)
-        stop("fastkrr.nblocks must be a whole number")
+        stop("fastkrr.nblocks must be an integer")
     if (!requireNamespace("CVST"))
         stop("require the 'CVST' package")
     if (!requireNamespace("kernlab"))
@@ -138,6 +138,29 @@ drr <- function (X, ndim         = ncol(X),
     if (ndim < ncol(X))
         warning("ndim < data dimensionality, ",
                 "the inverse functions will be incomplete!")
+
+    devnull <- if (Sys.info()["sysname"] != "Windows")
+                 "/dev/null" # nolint
+               else
+                 "NUL"
+
+    if (!verbose){
+      devnull1 <- file(devnull,  "wt")
+      sink(devnull1, type = "message")
+      on.exit({
+        sink(file = NULL, type = "message")
+        close(devnull1)
+      }, add = TRUE)
+    }
+    if (!verbose) {
+      devnull2 <- file(devnull,  "wt")
+      sink(devnull2, type = "output")
+      on.exit({
+        sink()
+        close(devnull2)
+      }, add = TRUE)
+    }
+
     if (ndim > ncol(X))
         ndim <- ncol(X)
 
@@ -184,19 +207,20 @@ drr <- function (X, ndim         = ncol(X),
 
 
         res <- if (fastcv) {
-                   CVST::fastCV(
-                       data, krrl, p,
-                       CVST::constructCVSTModel(),
-                       test = fastcv.test,
-                       verbose = verbose
-                   )
+                 CVST::fastCV(
+                         data, krrl, p,
+                         CVST::constructCVSTModel(),
+                         test = fastcv.test,
+                         verbose = verbose
+                       )
                } else {
-                   CVST::CV(
-                       data, krrl, p,
-                       fold = cv.folds,
-                       verbose = verbose
-                   )
+                 CVST::CV(
+                         data, krrl, p,
+                         fold = cv.folds,
+                         verbose = verbose
+                       )
                }
+
         model <- krrl$learn(data, res[[1]])
 
         models[[i]] <- model

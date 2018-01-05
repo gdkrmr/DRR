@@ -1,17 +1,15 @@
 Package: DRR
 Title: Dimensionality Reduction via Regression
-Version: 0.0.2.9000
-Authors@R: person("Guido", "Kraemer",
-                  email = "gkraemer@bgc-jena.mpg.de",
-		  role = c("aut","cre"))
+Version: 0.0.2.9001
+Authors@R: person("Guido", "Kraemer", email = "gkraemer@bgc-jena.mpg.de", role = c("aut","cre"))
 Description: An Implementation of Dimensionality Reduction
     via Regression using Kernel Ridge Regression.
 License: GPL-3 | file LICENSE
 URL: https://github.com/gdkrmr/DRR
 BugReports: https://github.com/gdkrmr/DRR/issues
 Imports: stats, methods
-Suggests: knitr
+Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 LazyData: true
 Depends: kernlab, CVST, Matrix
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

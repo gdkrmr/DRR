@@ -3,3 +3,4 @@
 ^DRR\.Rcheck$
 ^checkpackage\.sh$
 ^\.travis\.yml$
+^scratch/

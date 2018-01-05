@@ -59,4 +59,3 @@ Zhang, Y., Duchi, J.C., Wainwright, M.J., 2013. Divide and Conquer
 \seealso{
 \code{\link[CVST]{constructLearner}}
 }
-

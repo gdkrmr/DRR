@@ -15,6 +15,7 @@ computational speed of DRR for different parameters to PCA.
 ## Load libraries
 ```{r, echo = TRUE, message = FALSE}
 library(DRR)
+set.seed(123)
 ```
 
 ## Read in data
@@ -32,10 +33,11 @@ my_data <- scale(in_data[sample(npoints), ], scale = FALSE)
 ## Fit the dimensionality reductions.
 ```{r, echo = TRUE, results = "hide", warning = FALSE, error = FALSE, message = FALSE}
 t0 <- system.time(pca   <- prcomp(my_data, center = FALSE, scale. = FALSE))
-t1 <- system.time(drr.1 <- drr(my_data))
-t2 <- system.time(drr.2 <- drr(my_data, fastkrr = 2))
-t3 <- system.time(drr.3 <- drr(my_data, fastkrr = 5))
-t4 <- system.time(drr.4 <- drr(my_data, fastkrr = 2, fastcv = TRUE))
+t1 <- system.time(drr.1 <- drr(my_data, verbose = FALSE))
+t2 <- system.time(drr.2 <- drr(my_data, fastkrr = 2, verbose = FALSE))
+t3 <- system.time(drr.3 <- drr(my_data, fastkrr = 5, verbose = FALSE))
+t4 <- system.time(drr.4 <- drr(my_data, fastkrr = 2, fastcv = TRUE,
+                               verbose = FALSE))
 ```
 
 
