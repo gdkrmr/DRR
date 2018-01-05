@@ -24,4 +24,15 @@ Zhang, Y., Duchi, J.C., Wainwright, M.J., 2013. Divide and Conquer
     Kernel Ridge Regression: A Distributed Algorithm with Minimax
     Optimal Rates. arXiv:1305.5029 [cs, math, stat].
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/gdkrmr/DRR}
+  \item Report bugs at \url{https://github.com/gdkrmr/DRR/issues}
+}
 
+}
+\author{
+\strong{Maintainer}: Guido Kraemer \email{gkraemer@bgc-jena.mpg.de}
+
+}
