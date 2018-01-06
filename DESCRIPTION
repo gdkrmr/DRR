@@ -4,6 +4,7 @@ Version: 0.0.3.9000
 Authors@R: person("Guido", "Kraemer", email = "gkraemer@bgc-jena.mpg.de", role = c("aut","cre"))
 Description: An Implementation of Dimensionality Reduction
     via Regression using Kernel Ridge Regression.
+    Laparra et al. (2015) <doi:10.1109/JSTSP.2015.2417833>
 License: GPL-3 | file LICENSE
 URL: https://github.com/gdkrmr/DRR
 BugReports: https://github.com/gdkrmr/DRR/issues
