@@ -1,6 +1,7 @@
 # DRR
 [![Travis Build Status](https://travis-ci.org/gdkrmr/DRR.svg?branch=master)](https://travis-ci.org/gdkrmr/DRR)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/DRR)](https://cran.r-project.org/package=DRR)
+[![DOI](https://zenodo.org/badge/69353088.svg)](https://zenodo.org/badge/latestdoi/69353088)
 
 Dimensionality Reduction via Regression
 
