@@ -123,6 +123,8 @@ drr <- function (X, ndim         = ncol(X),
                  fastcv.test     = NULL,
                  fastkrr.nblocks = 4,
                  verbose         = TRUE)  {
+    if ( ndim > min(nrow(X), ncol(X)) )
+        stop("ndim too large, the maximum number of dimensions is min(nrow(X), ncol(X))")
     if ( (!fastcv) && (cv.folds <= 1))
         stop("need more than one fold for crossvalidation")
     if (cv.folds %% 1 != 0)
@@ -253,7 +255,7 @@ drr <- function (X, ndim         = ncol(X),
     }
 
     inv <- function(x){
-        dat <- cbind(x, matrix(0, nrow(x), ncol(X) - ncol(x)))
+        dat <- cbind(x, matrix(0, nrow(x), ncol(pca$rotation) - ncol(x)))
 
         outdat <- dat
 
