@@ -4,10 +4,21 @@
 \alias{drr}
 \title{Dimensionality Reduction via Regression}
 \usage{
-drr(X, ndim = ncol(X), lambda = c(0, 10^(-3:2)), kernel = "rbfdot",
-  kernel.pars = list(sigma = 10^(-3:4)), pca = TRUE, pca.center = TRUE,
-  pca.scale = FALSE, fastcv = FALSE, cv.folds = 5, fastcv.test = NULL,
-  fastkrr.nblocks = 4, verbose = TRUE)
+drr(
+  X,
+  ndim = ncol(X),
+  lambda = c(0, 10^(-3:2)),
+  kernel = "rbfdot",
+  kernel.pars = list(sigma = 10^(-3:4)),
+  pca = TRUE,
+  pca.center = TRUE,
+  pca.scale = FALSE,
+  fastcv = FALSE,
+  cv.folds = 5,
+  fastcv.test = NULL,
+  fastkrr.nblocks = 4,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{X}{input data, a matrix.}
