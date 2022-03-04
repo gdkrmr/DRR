@@ -10,6 +10,5 @@ BugReports: https://github.com/gdkrmr/DRR/issues
 Imports: stats, methods
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
-LazyData: true
 Depends: kernlab, CVST, Matrix
 RoxygenNote: 7.0.2
