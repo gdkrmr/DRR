@@ -2,3 +2,10 @@ url: ~
 template:
   bootstrap: 5
 
+
+footer:
+  structure:
+    left: [package, developed_by]
+    right: [build_with, impressum]
+  components:
+    impressum: <a href="https://www.guido-kraemer.com/terms/">Impressum</a>
