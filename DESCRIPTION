@@ -1,7 +1,11 @@
 Package: DRR
 Title: Dimensionality Reduction via Regression
 Version: 0.0.4.9001
-Authors@R: person("Guido", "Kraemer", email = "gkraemer@bgc-jena.mpg.de", role = c("aut","cre"))
+Authors@R: c(
+            person("Guido", "Kraemer", email = "gkraemer@bgc-jena.mpg.de", role = c("aut","cre"),
+              comment = c(ORCID = "0000-0003-4865-5041")
+            )
+           )
 Description: An Implementation of Dimensionality Reduction
     via Regression using Kernel Ridge Regression.
 License: GPL-3 | file LICENSE
