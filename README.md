@@ -2,7 +2,7 @@
 
 [![docs](https://img.shields.io/badge/docs-dev-blue.svg)](https://dimred.guido-kraemer.com)
 [![R](https://github.com/gdkrmr/DRR/actions/workflows/r.yml/badge.svg)](https://github.com/gdkrmr/DRR/actions/workflows/r.yml)
-[![codecov](https://codecov.io/gh/gdkrmr/DRR/branch/master/graph/badge.svg?token=aAk1rxUH2P)](https://codecov.io/gh/gdkrmr/DRR)
+[![codecov](https://codecov.io/gh/gdkrmr/DRR/branch/master/graph/badge.svg?token=aAk1rxUH2P)](https://app.codecov.io/gh/gdkrmr/DRR)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/DRR)](https://cran.r-project.org/package=DRR)
 [![DOI](https://zenodo.org/badge/69353088.svg)](https://zenodo.org/badge/latestdoi/69353088)
 
