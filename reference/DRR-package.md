@@ -1,0 +1,38 @@
+# Dimensionality Reduction via Regression.
+
+DRR implements the Dimensionality Reduction via Regression using Kernel
+Ridge Regression. It also adds a faster implementation of Kernel Ridge
+regression that can be used with the CVST package.
+
+## Details
+
+Funding provided by the Department for Biogeochemical Integration,
+Empirical Inference of the Earth System Group, at the Max Plack
+Institute for Biogeochemistry, Jena.
+
+## References
+
+Laparra, V., Malo, J., Camps-Valls, G., 2015. Dimensionality Reduction
+via Regression in Hyperspectral Imagery. IEEE Journal of Selected Topics
+in Signal Processing 9, 1026-1036. doi:10.1109/JSTSP.2015.2417833 Zhang,
+Y., Duchi, J.C., Wainwright, M.J., 2013. Divide and Conquer Kernel Ridge
+Regression: A Distributed Algorithm with Minimax Optimal Rates.
+arXiv:1305.5029 \[cs, math, stat\].
+
+## See also
+
+Useful links:
+
+- <https://www.guido-kraemer.com/software/drr/>
+
+- Report bugs at <https://github.com/gdkrmr/DRR/issues>
+
+## Author
+
+**Maintainer**: Guido Kraemer <guido.kraemer@uni-leipzig.de>
+([ORCID](https://orcid.org/0000-0003-4865-5041))
+
+Authors:
+
+- Guido Kraemer <guido.kraemer@uni-leipzig.de>
+  ([ORCID](https://orcid.org/0000-0003-4865-5041))

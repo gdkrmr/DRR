@@ -1,7 +1,6 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.8.3
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   comparePCA: comparePCA.html
-last_built: 2023-03-21T13:05Z
-
+last_built: 2026-05-15T15:15Z
