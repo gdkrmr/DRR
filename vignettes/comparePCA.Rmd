@@ -4,7 +4,7 @@ author: "Guido Kraemer"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-    %\VignetteIndexEntry{Compare DRR and PCA}
+    %\VignetteIndexEntry{Comparing DRR and PCA}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
 ---
