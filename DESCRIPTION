@@ -11,6 +11,7 @@ Description: An Implementation of Dimensionality Reduction
 License: GPL-3 | file LICENSE
 URL: https://www.guido-kraemer.com/software/drr/
 BugReports: https://github.com/gdkrmr/DRR/issues
+Encoding: UTF-8
 Imports: stats, methods
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
