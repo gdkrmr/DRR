@@ -16,4 +16,4 @@ Imports: stats, methods
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 Depends: kernlab, CVST, Matrix
-RoxygenNote: 7.0.2
+Config/roxygen2/version: 8.0.0

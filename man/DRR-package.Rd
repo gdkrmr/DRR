@@ -27,12 +27,17 @@ Zhang, Y., Duchi, J.C., Wainwright, M.J., 2013. Divide and Conquer
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/gdkrmr/DRR}
+  \item \url{https://www.guido-kraemer.com/software/drr/}
   \item Report bugs at \url{https://github.com/gdkrmr/DRR/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Guido Kraemer \email{gkraemer@bgc-jena.mpg.de}
+\strong{Maintainer}: Guido Kraemer \email{guido.kraemer@uni-leipzig.de} (\href{https://orcid.org/0000-0003-4865-5041}{ORCID})
+
+Authors:
+\itemize{
+  \item Guido Kraemer \email{guido.kraemer@uni-leipzig.de} (\href{https://orcid.org/0000-0003-4865-5041}{ORCID})
+}
 
 }
